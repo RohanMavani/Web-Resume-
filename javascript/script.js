@@ -1,4 +1,18 @@
 $(document).ready(function() {
+
+  var supportsPassive = false;
+  try {
+    var opts = Object.defineProperty({}, 'passive', {
+      get: function() {
+        supportsPassive = true;
+      }
+    });
+    window.addEventListener("testPassive", null, opts);
+    window.removeEventListener("testPassive", null, opts);
+  } catch (e) {}
+
+  var flag = true;
+
   $(".menu-icon").on("click", function() {
     $("nav ul").toggleClass("showing");
   });
@@ -32,9 +46,23 @@ $(document).ready(function() {
     });
 
 
-    // Downloadble button
-    $(".mdl-button").click(function(){
-      window.location = 'Rohan - main - Copy.pdf';
-    });
+  // Downloadble button
+  $(".mdl-button").click(function() {
+    window.location = 'Rohan - main - Copy.pdf';
+  });
+
+  $('.myTab a').on('click', function(e) {
+    e.preventDefault();
+    $(this).tab('show');
+  });
+
+
+  //tooltip
+  $('[data-toggle="tooltip"]').tooltip();
+
+  // to change the style for the skills part
+
+
+
 
 });
